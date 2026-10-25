@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Tenyo</string>
+
+    <!-- SplashScreen -->
+    <string name="splash_logo_content_description">Logo Tenyo</string>
+    <string name="splash_brand_title">Tenyo</string>
+    <string name="splash_brand_slogan">EL CUERPO ES UN ARMA</string>
+</resources>
