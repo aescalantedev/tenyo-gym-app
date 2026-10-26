@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.aescalantedev.tenyo.core.domain.model.AppLanguage
@@ -44,6 +45,8 @@ import com.aescalantedev.tenyo.ui.theme.TenyoTextPrimary
 import com.aescalantedev.tenyo.ui.theme.TenyoTextTertiary
 import com.aescalantedev.tenyo.ui.theme.paletteForThemeMode
 import com.composables.icons.lucide.Check
+import com.composables.icons.lucide.Coffee
+import com.composables.icons.lucide.ExternalLink
 import com.composables.icons.lucide.Globe
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Palette
@@ -279,6 +282,76 @@ fun ProfileSettingsAndThemeSection(
                         text = "Reiniciar asistente de bienvenida",
                         style = MaterialTheme.typography.labelLarge,
                         color = TenyoTextPrimary
+                    )
+                }
+            }
+        }
+
+        // Sección de Apoyo al Desarrollador (Buy Me a Coffee)
+        val uriHandler = LocalUriHandler.current
+        val buyMeACoffeeUrl = "https://buymeacoffee.com/aescalante.dev"
+
+        TenyoSectionHeaderCard(
+            tagText = "COMUNIDAD & APOYO",
+            title = "Apoyar al Desarrollador",
+            description = "Tenyo es un proyecto independiente y libre de publicidad. Si la app te ayuda en tus entrenamientos diarios, puedes invitarle un café al desarrollador para apoyar las futuras mejoras.",
+            icon = Lucide.Coffee,
+            accentColor = Color(0xFFFFDD00)
+        ) {
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .clickable { uriHandler.openUri(buyMeACoffeeUrl) },
+                shape = RoundedCornerShape(16.dp),
+                color = Color(0xFF1B1A14),
+                border = BorderStroke(1.dp, Color(0xFFFFDD00).copy(alpha = 0.40f))
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 14.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Surface(
+                            shape = CircleShape,
+                            color = Color(0xFFFFDD00),
+                            modifier = Modifier.size(38.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(
+                                    imageVector = Lucide.Coffee,
+                                    contentDescription = "Buy Me a Coffee",
+                                    tint = Color(0xFF121212),
+                                    modifier = Modifier.size(20.dp)
+                                )
+                            }
+                        }
+                        Spacer(modifier = Modifier.width(14.dp))
+                        Column {
+                            Text(
+                                text = "Invítame un café",
+                                style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
+                                color = Color(0xFFFFDD00)
+                            )
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Text(
+                                text = "buymeacoffee.com/aescalante.dev",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = TenyoTextTertiary
+                            )
+                        }
+                    }
+                    Icon(
+                        imageVector = Lucide.ExternalLink,
+                        contentDescription = "Abrir enlace",
+                        tint = Color(0xFFFFDD00),
+                        modifier = Modifier.size(18.dp)
                     )
                 }
             }
